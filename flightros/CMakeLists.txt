@@ -58,6 +58,67 @@ target_link_libraries(flight_pilot_node
   stdc++fs
 )
 
+#example1
+
+cs_add_library(example1
+    src/Examples/example1.cpp
+)
+
+target_link_libraries(example1
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  stdc++fs
+)
+
+cs_add_executable(example1_node
+   src/Examples/example1_node.cpp
+)
+
+target_link_libraries(example1_node
+  example1
+  ${OpenCV_LIBRARIES}
+  stdc++fs
+)
+
+# Odometry Publisher
+cs_add_executable(odometry_publisher
+    src/Examples/odometry_publisher.cpp
+)
+
+target_link_libraries(odometry_publisher
+${catkin_LIBRARIES}
+${OpenCV_LIBRARIES}
+stdc++fs
+zmq
+zmqpp
+)
+
+# Active Node
+cs_add_executable(active_node
+    src/Examples/active_node.cpp
+)
+
+target_link_libraries(active_node
+${catkin_LIBRARIES}
+${OpenCV_LIBRARIES}
+stdc++fs
+zmq
+zmqpp
+)
+
+# Sim dron
+cs_add_executable(Sim_dron
+    src/Examples/Sim_dron.cpp
+)
+
+target_link_libraries(Sim_dron
+${catkin_LIBRARIES}
+${OpenCV_LIBRARIES}
+stdc++fs
+zmq
+zmqpp
+)
+
 # motion_planning
 
 if(BUILD_MP)

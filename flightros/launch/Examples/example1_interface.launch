@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="quad_name" default="hummingbird1"/>
+
+  <arg name="use_unity_editor" default="false" />
+
+  <arg name="scene" default="0" />
+
+  <group ns="$(arg quad_name)" >
+
+    <!-- RPG Flightmare Unity Render. -->
+    <node pkg="flightrender" type="RPG_FlightmareExample.x86_64" name="rpg_flightmare_render" unless="$(arg use_unity_editor)">
+    </node>
+
+    <!-- Flightmare-Gazebo Communication-->
+    <node pkg="flightros" type="example1_node" name="example1_node" output="screen">
+      <rosparam file="$(find flightros)/params/default.yaml" />
+      
+      <param name="scene_id" value="$(arg scene)" />
+
+      <remap from="flight_pilot/state_estimate" to="ground_truth/odometry" />
+    </node>
+
+</group>
+
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find flightros)/launch/camera/camera.rviz" />
+
+</launch>

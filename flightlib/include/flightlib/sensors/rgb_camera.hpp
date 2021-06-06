@@ -51,14 +51,17 @@ class RGBCamera : SensorBase {
   void enableOpticalFlow(const bool on);
   void enableSegmentation(const bool on);
 
+  
+  int width_;
+  int height_;
+  Scalar fov_;
+
  private:
   Logger logger_{"RBGCamera"};
 
   // camera parameters
   int channels_;
-  int width_;
-  int height_;
-  Scalar fov_;
+  
   Scalar depth_scale_;
 
   // Camera relative
